@@ -3,6 +3,7 @@ package com.Softuni.Pathfinder.web;
 import com.Softuni.Pathfinder.model.binding.UserLoginBindingModel;
 import com.Softuni.Pathfinder.model.binding.UserRegisterBindingModel;
 import com.Softuni.Pathfinder.model.service.UserServiceModel;
+import com.Softuni.Pathfinder.model.view.UserViewModel;
 import com.Softuni.Pathfinder.service.UserService;
 import com.Softuni.Pathfinder.util.CurrentUser;
 import jakarta.validation.Valid;
@@ -10,10 +11,7 @@ import org.modelmapper.ModelMapper;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 @Controller
@@ -59,6 +57,11 @@ public class UserController {
             return "redirect:register";
         }
 
+        boolean isNameExists = userService.isNameExists(userRegisterBindingModel.getUsername());
+
+        if (isNameExists) {
+            //ToDo: redirect with message
+        }
         userService.registerUser(modelMapper
                 .map(userRegisterBindingModel, UserServiceModel.class));
 
@@ -110,4 +113,12 @@ public class UserController {
         return "redirect:/";
     }
 
+    @GetMapping("/profile/{id}")
+    private String profile(@PathVariable Long id, Model model) {
+
+        model.addAttribute("user", modelMapper
+                .map(userService.findById(id), UserViewModel.class));
+
+        return "profile";
+    }
 }

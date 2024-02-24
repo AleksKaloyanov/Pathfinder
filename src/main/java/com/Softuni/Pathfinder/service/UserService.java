@@ -1,9 +1,6 @@
 package com.Softuni.Pathfinder.service;
 
-import com.Softuni.Pathfinder.model.entity.UserEntity;
 import com.Softuni.Pathfinder.model.service.UserServiceModel;
-
-import java.util.Optional;
 
 public interface UserService {
     void registerUser(UserServiceModel userServiceModel);
@@ -13,4 +10,8 @@ public interface UserService {
     void loginUser(Long id, String username);
 
     void logout();
+
+    UserServiceModel findById(Long id);
+
+    boolean isNameExists(String username);
 }
