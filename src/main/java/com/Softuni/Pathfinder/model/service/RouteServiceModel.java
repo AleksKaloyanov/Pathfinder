@@ -3,6 +3,7 @@ package com.Softuni.Pathfinder.model.service;
 import com.Softuni.Pathfinder.model.entity.CategoryEntity;
 import com.Softuni.Pathfinder.model.entity.PictureEntity;
 import com.Softuni.Pathfinder.model.entity.UserEntity;
+import com.Softuni.Pathfinder.model.entity.enums.CategoryNameEnum;
 import com.Softuni.Pathfinder.model.entity.enums.LevelEnum;
 
 import java.util.Set;
@@ -16,7 +17,7 @@ public class RouteServiceModel {
     private UserEntity author;
     private String videoUrl;
     private Set<PictureEntity> pictures;
-    private Set<CategoryEntity> categories;
+    private Set<CategoryNameEnum> categories;
 
 
     public RouteServiceModel() {
@@ -94,11 +95,11 @@ public class RouteServiceModel {
         return this;
     }
 
-    public Set<CategoryEntity> getCategories() {
+    public Set<CategoryNameEnum> getCategories() {
         return categories;
     }
 
-    public RouteServiceModel setCategories(Set<CategoryEntity> categories) {
+    public RouteServiceModel setCategories(Set<CategoryNameEnum> categories) {
         this.categories = categories;
         return this;
     }

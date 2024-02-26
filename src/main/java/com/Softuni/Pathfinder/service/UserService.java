@@ -1,5 +1,6 @@
 package com.Softuni.Pathfinder.service;
 
+import com.Softuni.Pathfinder.model.entity.UserEntity;
 import com.Softuni.Pathfinder.model.service.UserServiceModel;
 
 public interface UserService {
@@ -14,4 +15,6 @@ public interface UserService {
     UserServiceModel findById(Long id);
 
     boolean isNameExists(String username);
+
+    UserEntity findCurrentLoginUserEntity();
 }
