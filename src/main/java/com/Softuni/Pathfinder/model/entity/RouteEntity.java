@@ -19,7 +19,7 @@ public class RouteEntity extends BaseEntity {
     private UserEntity author;
     @Column
     private String videoUrl;
-    @OneToMany(mappedBy = "route")
+    @OneToMany(mappedBy = "route", fetch = FetchType.EAGER)
     private Set<PictureEntity> pictures;
     @ManyToMany
     private Set<CategoryEntity> categories;
