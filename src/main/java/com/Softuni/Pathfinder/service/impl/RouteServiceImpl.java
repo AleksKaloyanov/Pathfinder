@@ -2,6 +2,7 @@ package com.Softuni.Pathfinder.service.impl;
 
 import com.Softuni.Pathfinder.model.entity.RouteEntity;
 import com.Softuni.Pathfinder.model.service.RouteServiceModel;
+import com.Softuni.Pathfinder.model.view.RouteDetailsViewModel;
 import com.Softuni.Pathfinder.model.view.RouteViewModel;
 import com.Softuni.Pathfinder.repository.RouteRepository;
 import com.Softuni.Pathfinder.service.CategoryService;
@@ -69,5 +70,13 @@ public class RouteServiceImpl implements RouteService {
                 .collect(Collectors.toSet()));
 
         routeRepository.save(route);
+    }
+
+    @Override
+    public RouteDetailsViewModel findRouteById(Long id) {
+        return routeRepository
+                .findById(id)
+                .map(route -> modelMapper.map(route, RouteDetailsViewModel.class))
+                .orElse(null);
     }
 }
